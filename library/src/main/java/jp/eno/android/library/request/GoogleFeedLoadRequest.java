@@ -12,6 +12,8 @@ import com.android.volley.VolleyError;
 
 import org.apache.http.HttpStatus;
 
+import java.io.UnsupportedEncodingException;
+
 import jp.eno.android.library.model.RssFeed;
 import jp.eno.android.library.volley.VolleyCache;
 
@@ -49,9 +51,9 @@ public class GoogleFeedLoadRequest extends Request<RssFeed> {
         uriBuilder.appendQueryParameter( Builder.PARAM_HL, builder.mHl );
         uriBuilder.appendQueryParameter( Builder.PARAM_NUM, String.valueOf( builder.mNum ) );
 
-        Log.d( "AAAAAAA", builder.toString() );
+        Log.d( "AAAAAAA", uriBuilder.build().toString() );
 
-        return builder.toString();
+        return uriBuilder.build().toString();
     }
 
     @Override
@@ -61,7 +63,11 @@ public class GoogleFeedLoadRequest extends Request<RssFeed> {
             return Response.error( new VolleyError( "Unexpected status code " + response.statusCode ) );
         }
 
-        Log.d( "BBBBBBB", response.toString() );
+        try {
+            Log.d( "BBBBBBB", new String(response.data, "UTF-8") );
+        } catch ( UnsupportedEncodingException e ) {
+            e.printStackTrace();
+        }
 
         final RssFeed feed = null;
         Cache.Entry cacheEntry = VolleyCache.createEntry( response, mCacheDurationMs, true );
@@ -80,7 +86,7 @@ public class GoogleFeedLoadRequest extends Request<RssFeed> {
     /**
      * リクエスト生成用のクラス
      */
-    public class Builder {
+    public static class Builder {
 
         /**
          * リクエストAPIのURL

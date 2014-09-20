@@ -1,9 +1,12 @@
-package android.eno.jp.library;
+package jp.eno.android.sample;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import jp.eno.android.library.request.GoogleFeedLoadRequest;
+import jp.eno.android.library.volley.VolleyQueue;
 
 
 public class MyActivity extends Activity {
@@ -12,6 +15,10 @@ public class MyActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my);
+
+        String rss = "http://blog.livedoor.jp/livejupiter2/index.rdf";
+        GoogleFeedLoadRequest request = new GoogleFeedLoadRequest.Builder( rss ).build();
+        VolleyQueue.getQueue( getApplicationContext() ).add( request );
     }
 
 

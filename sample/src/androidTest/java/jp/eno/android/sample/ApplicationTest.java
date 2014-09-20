@@ -1,4 +1,4 @@
-package android.eno.jp.library;
+package jp.eno.android.sample;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
