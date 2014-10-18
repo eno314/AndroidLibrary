@@ -10,7 +10,7 @@
       <configuration>
         <option name="SELECTED_BUILD_VARIANT" value="debug" />
         <option name="ASSEMBLE_TASK_NAME" value="assembleDebug" />
-        <option name="COMPILE_JAVA_TASK_NAME" value="compileDebugJava" />
+        <option name="COMPILE_JAVA_TASK_NAME" value="compileDebugSources" />
         <option name="ASSEMBLE_TEST_TASK_NAME" value="assembleDebugTest" />
         <option name="SOURCE_GEN_TASK_NAME" value="generateDebugSources" />
         <option name="TEST_SOURCE_GEN_TASK_NAME" value="generateDebugTestSources" />
@@ -80,9 +80,29 @@
       <excludeFolder url="file://$MODULE_DIR$/build/outputs" />
       <excludeFolder url="file://$MODULE_DIR$/build/tmp" />
     </content>
-    <orderEntry type="jdk" jdkName="Android API 20, L preview Platform" jdkType="Android SDK" />
+    <orderEntry type="jdk" jdkName="Android API 21 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="library-1.0.6" level="project" />
+    <orderEntry type="library" exported="" scope="TEST" name="commons-codec-1.3" level="project" />
+    <orderEntry type="library" exported="" name="support-v4-21.0.0" level="project" />
+    <orderEntry type="library" exported="" scope="TEST" name="robolectric-2.3" level="project" />
+    <orderEntry type="library" exported="" scope="TEST" name="objenesis-1.3" level="project" />
+    <orderEntry type="library" exported="" scope="TEST" name="asm-5.0.1" level="project" />
+    <orderEntry type="library" exported="" scope="TEST" name="asm-commons-5.0.1" level="project" />
+    <orderEntry type="library" exported="" scope="TEST" name="vtd-xml-2.11" level="project" />
+    <orderEntry type="library" exported="" scope="TEST" name="hamcrest-core-1.3" level="project" />
+    <orderEntry type="library" exported="" scope="TEST" name="junit-4.11" level="project" />
+    <orderEntry type="library" exported="" scope="TEST" name="asm-tree-5.0.1" level="project" />
+    <orderEntry type="library" exported="" name="library-1.0.7" level="project" />
+    <orderEntry type="library" exported="" scope="TEST" name="asm-analysis-5.0.1" level="project" />
+    <orderEntry type="library" exported="" name="support-annotations-21.0.0" level="project" />
+    <orderEntry type="library" exported="" scope="TEST" name="ant-1.8.0" level="project" />
+    <orderEntry type="library" exported="" scope="TEST" name="fest-util-1.2.5" level="project" />
+    <orderEntry type="library" exported="" scope="TEST" name="ant-launcher-1.8.0" level="project" />
+    <orderEntry type="library" exported="" scope="TEST" name="fest-reflect-1.4.1" level="project" />
+    <orderEntry type="library" exported="" scope="TEST" name="asm-util-5.0.1" level="project" />
+    <orderEntry type="library" exported="" scope="TEST" name="maven-ant-tasks-2.1.3" level="project" />
+    <orderEntry type="library" exported="" scope="TEST" name="sqlite4java-0.282" level="project" />
+    <orderEntry type="library" exported="" name="appcompat-v7-21.0.0" level="project" />
   </component>
 </module>
 
