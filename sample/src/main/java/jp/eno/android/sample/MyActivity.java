@@ -17,8 +17,8 @@ public class MyActivity extends Activity {
         setContentView(R.layout.activity_my);
 
         String rss = "http://blog.livedoor.jp/livejupiter2/index.rdf";
-        GoogleFeedLoadRequest request = new GoogleFeedLoadRequest.Builder( rss ).build();
-        VolleyQueue.getQueue( getApplicationContext() ).add( request );
+        GoogleFeedLoadRequest request = new GoogleFeedLoadRequest.Builder(rss).build();
+        VolleyQueue.getQueue(getApplicationContext()).add(request);
     }
 
 

@@ -31,9 +31,9 @@ public class GoogleFeedLoadRequest extends Request<RssFeed> {
 
     private final long mCacheDurationMs;
 
-    public GoogleFeedLoadRequest( Builder builder ) {
+    public GoogleFeedLoadRequest(Builder builder) {
 
-        super( Method.GET, buildRequestUrl( builder ), builder.mErrorListener );
+        super(Method.GET, buildRequestUrl(builder), builder.mErrorListener);
 
         mListener = builder.mListener;
         mCacheDurationMs = builder.mCacheDurationMs;
@@ -42,43 +42,41 @@ public class GoogleFeedLoadRequest extends Request<RssFeed> {
     /**
      * リクエストURLの生成
      */
-    private static String buildRequestUrl( Builder builder ) {
+    private static String buildRequestUrl(Builder builder) {
 
-        Uri.Builder uriBuilder = Uri.parse( Builder.API_URL ).buildUpon();
-        uriBuilder.appendQueryParameter( Builder.PARAM_QUERY, builder.mQuery );
-        uriBuilder.appendQueryParameter( Builder.PARAM_VERSION, builder.mVersion );
-        uriBuilder.appendQueryParameter( Builder.PARAM_HL, builder.mHl );
-        uriBuilder.appendQueryParameter( Builder.PARAM_NUM, String.valueOf( builder.mNum ) );
-
-        Log.d( "AAAAAAA", uriBuilder.build().toString() );
+        Uri.Builder uriBuilder = Uri.parse(Builder.API_URL).buildUpon();
+        uriBuilder.appendQueryParameter(Builder.PARAM_QUERY, builder.mQuery);
+        uriBuilder.appendQueryParameter(Builder.PARAM_VERSION, builder.mVersion);
+        uriBuilder.appendQueryParameter(Builder.PARAM_HL, builder.mHl);
+        uriBuilder.appendQueryParameter(Builder.PARAM_NUM, String.valueOf(builder.mNum));
 
         return uriBuilder.build().toString();
     }
 
     @Override
-    protected Response<RssFeed> parseNetworkResponse( NetworkResponse response ) {
+    protected Response<RssFeed> parseNetworkResponse(NetworkResponse response) {
 
-        if ( response.statusCode != HttpStatus.SC_OK ) {
-            return Response.error( new VolleyError( "Unexpected status code " + response.statusCode ) );
+        if (response.statusCode != HttpStatus.SC_OK) {
+            return Response.error(new VolleyError("Unexpected status code " + response.statusCode));
         }
 
         try {
-            Log.d( "BBBBBBB", new String(response.data, "UTF-8") );
-        } catch ( UnsupportedEncodingException e ) {
+            Log.d("BBBBBBB", new String(response.data, "UTF-8"));
+        } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
 
         final RssFeed feed = null;
-        Cache.Entry cacheEntry = VolleyCache.createEntry( response, mCacheDurationMs, true );
-        Response<RssFeed> parsed = Response.success( feed, cacheEntry );
+        Cache.Entry cacheEntry = VolleyCache.createEntry(response, mCacheDurationMs, true);
+        Response<RssFeed> parsed = Response.success(feed, cacheEntry);
 
         return parsed;
     }
 
     @Override
-    protected void deliverResponse( RssFeed response ) {
-        if ( mListener != null ) {
-            mListener.onResponse( response );
+    protected void deliverResponse(RssFeed response) {
+        if (mListener != null) {
+            mListener.onResponse(response);
         }
     }
 
@@ -132,42 +130,42 @@ public class GoogleFeedLoadRequest extends Request<RssFeed> {
          */
         private long mCacheDurationMs = 10 * 60 * 1000;
 
-        public Builder( String query ) {
+        public Builder(String query) {
             mQuery = query;
         }
 
-        public Builder setVersion( String version ) {
+        public Builder setVersion(String version) {
             mVersion = version;
             return this;
         }
 
-        public Builder setHl( String hl ) {
+        public Builder setHl(String hl) {
             mHl = hl;
             return this;
         }
 
-        public Builder setNum( int num ) {
+        public Builder setNum(int num) {
             mNum = num;
             return this;
         }
 
-        public Builder setListener( Response.Listener<RssFeed> listener ) {
+        public Builder setListener(Response.Listener<RssFeed> listener) {
             mListener = listener;
             return this;
         }
 
-        public Builder setErrorListener( Response.ErrorListener errorListener ) {
+        public Builder setErrorListener(Response.ErrorListener errorListener) {
             mErrorListener = errorListener;
             return this;
         }
 
-        public Builder setCacheDurationMs( long cacheDurationMs ) {
+        public Builder setCacheDurationMs(long cacheDurationMs) {
             mCacheDurationMs = cacheDurationMs;
             return this;
         }
 
         public GoogleFeedLoadRequest build() {
-            return new GoogleFeedLoadRequest( this );
+            return new GoogleFeedLoadRequest(this);
         }
     }
 }

@@ -37,19 +37,19 @@ public class RssEntry implements RequestResponseModel {
     @Override
     public boolean isValid() {
 
-        if ( TextUtils.isEmpty( title ) ) {
+        if (TextUtils.isEmpty(title)) {
             return false;
         }
 
-        if ( TextUtils.isEmpty( linkUrl ) ) {
+        if (TextUtils.isEmpty(linkUrl)) {
             return false;
         }
 
-        if ( publishedDate == null ) {
+        if (publishedDate == null) {
             return false;
         }
 
-        if ( TextUtils.isEmpty( content ) ) {
+        if (TextUtils.isEmpty(content)) {
             return false;
         }
 

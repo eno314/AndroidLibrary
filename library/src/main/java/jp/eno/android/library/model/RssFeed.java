@@ -39,23 +39,23 @@ public class RssFeed implements RequestResponseModel {
     @Override
     public boolean isValid() {
 
-        if ( TextUtils.isEmpty( feedUrl ) ) {
+        if (TextUtils.isEmpty(feedUrl)) {
             return false;
         }
 
-        if ( TextUtils.isEmpty( title ) ) {
+        if (TextUtils.isEmpty(title)) {
             return false;
         }
 
-        if ( TextUtils.isEmpty( linkUrl ) ) {
+        if (TextUtils.isEmpty(linkUrl)) {
             return false;
         }
 
-        if ( TextUtils.isEmpty( description ) ) {
+        if (TextUtils.isEmpty(description)) {
             return false;
         }
 
-        if ( !isValidEntryList( entryList ) ) {
+        if (!isValidEntryList(entryList)) {
             return false;
         }
 
@@ -64,13 +64,13 @@ public class RssFeed implements RequestResponseModel {
 
     private boolean isValidEntryList(List<RssEntry> entryList) {
 
-        if ( entryList == null ) {
+        if (entryList == null) {
             return false;
         }
 
-        for ( RssEntry rssEntry : entryList ) {
+        for (RssEntry rssEntry : entryList) {
 
-            if ( !rssEntry.isValid() ) {
+            if (!rssEntry.isValid()) {
                 return false;
             }
         }

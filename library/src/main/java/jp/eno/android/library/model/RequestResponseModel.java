@@ -8,6 +8,7 @@ public interface RequestResponseModel {
 
     /**
      * 有効なモデルかどうか
+     *
      * @return true : 有効 / false : 無効
      */
     public boolean isValid();
