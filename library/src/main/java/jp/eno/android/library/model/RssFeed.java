@@ -24,7 +24,7 @@ public class RssFeed implements RequestResponseModel {
     /**
      * サイトのリンク
      */
-    public String linkUrl;
+    public String link;
 
     /**
      * サイト説明
@@ -47,7 +47,7 @@ public class RssFeed implements RequestResponseModel {
             return false;
         }
 
-        if (TextUtils.isEmpty(linkUrl)) {
+        if (TextUtils.isEmpty(link)) {
             return false;
         }
 

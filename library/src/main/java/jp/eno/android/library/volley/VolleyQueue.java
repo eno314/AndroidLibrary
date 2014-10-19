@@ -27,7 +27,6 @@ public class VolleyQueue {
     public static RequestQueue getQueue(Context context) {
 
         if (sRequestQueue == null) {
-
             sRequestQueue = Volley.newRequestQueue(context.getApplicationContext());
         }
 

@@ -17,7 +17,7 @@ public class RssEntry implements RequestResponseModel {
     /**
      * 記事のリンク
      */
-    public String linkUrl;
+    public String link;
 
     /**
      * 配信日時
@@ -41,7 +41,7 @@ public class RssEntry implements RequestResponseModel {
             return false;
         }
 
-        if (TextUtils.isEmpty(linkUrl)) {
+        if (TextUtils.isEmpty(link)) {
             return false;
         }
 

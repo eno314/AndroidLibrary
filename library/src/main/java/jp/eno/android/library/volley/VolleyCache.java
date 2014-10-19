@@ -4,6 +4,7 @@ import com.android.volley.Cache;
 import com.android.volley.NetworkResponse;
 
 /**
+ * Volley用のキャッシュ操作クラス
  * Created by eno314 on 2014/09/20.
  */
 public class VolleyCache {

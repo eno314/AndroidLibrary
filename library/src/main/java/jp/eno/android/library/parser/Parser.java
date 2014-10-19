@@ -1,12 +1,14 @@
 package jp.eno.android.library.parser;
 
 /**
+ * パーサーの基底クラス
  * Created by eno314 on 2014/10/18.
  */
 abstract class Parser<T> {
 
     /**
      * パースの実行
+     *
      * @param body APIのレスポンスボディ
      * @return パース結果
      * @throws ParseException
@@ -23,6 +25,7 @@ abstract class Parser<T> {
 
     /**
      * パース処理のロジックをここに書く
+     *
      * @param body APIのレスポンスボディ
      * @return パース結果
      * @throws ParseException
@@ -31,6 +34,7 @@ abstract class Parser<T> {
 
     /**
      * パース結果の整合性チェック
+     *
      * @param result パース結果
      * @return true/false
      */

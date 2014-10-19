@@ -50,6 +50,8 @@ public class GoogleFeedLoadRequest extends Request<RssFeed> {
         uriBuilder.appendQueryParameter(Builder.PARAM_HL, builder.mHl);
         uriBuilder.appendQueryParameter(Builder.PARAM_NUM, String.valueOf(builder.mNum));
 
+        Log.d("AAAAA", uriBuilder.build().toString());
+
         return uriBuilder.build().toString();
     }
 
