@@ -22,11 +22,6 @@ import jp.eno.android.library.volley.VolleyCache;
  */
 public class GoogleFeedLoadRequest extends Request<RssFeed> {
 
-    /**
-     * キャッシュ時間（ミリ秒）
-     */
-    private static final long CACHE_DURATION_MS = 10 * 60 * 1000;
-
     private final Response.Listener<RssFeed> mListener;
 
     private final long mCacheDurationMs;
