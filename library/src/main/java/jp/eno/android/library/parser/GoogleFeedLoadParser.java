@@ -7,6 +7,7 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import jp.eno.android.library.model.RssEntry;
 import jp.eno.android.library.model.RssFeed;
@@ -31,6 +32,7 @@ public class GoogleFeedLoadParser extends Parser<RssFeed> {
 
     private static final String DATE_FORMAT = "EEE, d MMM yyyy HH:mm:ss Z";
 
+    @Override
     RssFeed parseInternal(byte[] body) throws ParseException {
         if (body == null || body.length == 0) {
             throw new ParseException("body is empty...");
@@ -90,9 +92,9 @@ public class GoogleFeedLoadParser extends Parser<RssFeed> {
         rssEntry.contentSnippet = entry.getString(NODE_CONTENT_SNIPPET);
         rssEntry.content = entry.getString(NODE_CONTENT);
 
-        final String dateString = entry.getString(NODE_PUBLISHED_DATE);
+        final String date = entry.getString(NODE_PUBLISHED_DATE);
         try {
-            rssEntry.publishedDate = DateUtils.stringToDate(dateString, DATE_FORMAT);
+            rssEntry.publishedDate = DateUtils.stringToDate(date, DATE_FORMAT, Locale.ENGLISH);
         } catch (java.text.ParseException e) {
             rssEntry.publishedDate = null;
         }

@@ -3,6 +3,7 @@ package jp.eno.android.library.util;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * 日付操作用のユーティリティクラス
@@ -15,12 +16,53 @@ public class DateUtils {
      *
      * @param dateString 日付文字列
      * @param format     dateStringのフォーマット
+     * @param locale     時間の基準の場所
+     * @return dateオブジェクト
+     * @throws ParseException
+     */
+    public static Date stringToDate(String dateString, String format, Locale locale)
+            throws ParseException {
+        final SimpleDateFormat dateFormat;
+
+        if (locale == null) {
+            dateFormat = new SimpleDateFormat(format);
+        } else {
+            dateFormat = new SimpleDateFormat(format, locale);
+        }
+
+        return dateFormat.parse(dateString);
+    }
+
+    /**
+     * 日付文字列からDateオブジェクトに変換
+     *
+     * @param dateString 日付文字列
+     * @param format     dateStringのフォーマット
      * @return dateオブジェクト
      * @throws ParseException
      */
     public static Date stringToDate(String dateString, String format) throws ParseException {
-        SimpleDateFormat dateFormat = new SimpleDateFormat(format);
-        return dateFormat.parse(dateString);
+        return stringToDate(dateString, format, null);
+    }
+
+    /**
+     * Dateオブジェクトから日付文字列に変換
+     *
+     * @param date   文字列にしたいdateオブジェクト
+     * @param format 返り値のフォーマット
+     * @param locale 時間の基準の場所
+     * @return 日付文字列
+     */
+    public static String dateToString(Date date, String format, Locale locale) {
+        final SimpleDateFormat dateFormat;
+
+        if (locale == null) {
+            dateFormat = new SimpleDateFormat(format);
+        } else {
+            dateFormat = new SimpleDateFormat(format, locale);
+        }
+
+        return dateFormat.format(date);
     }
 
     /**
@@ -31,7 +73,6 @@ public class DateUtils {
      * @return 日付文字列
      */
     public static String dateToString(Date date, String format) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat(format);
-        return dateFormat.format(date);
+        return dateToString(date, format, null);
     }
 }
