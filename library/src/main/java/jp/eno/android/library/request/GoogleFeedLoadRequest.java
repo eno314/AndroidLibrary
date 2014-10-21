@@ -1,19 +1,19 @@
 package jp.eno.android.library.request;
 
 import android.net.Uri;
-import android.util.Log;
 
 import com.android.volley.Cache;
 import com.android.volley.NetworkResponse;
+import com.android.volley.ParseError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 
 import org.apache.http.HttpStatus;
 
-import java.io.UnsupportedEncodingException;
-
 import jp.eno.android.library.model.RssFeed;
+import jp.eno.android.library.parser.GoogleFeedLoadParser;
+import jp.eno.android.library.parser.ParseException;
 import jp.eno.android.library.volley.VolleyCache;
 
 /**
@@ -27,7 +27,6 @@ public class GoogleFeedLoadRequest extends Request<RssFeed> {
     private final long mCacheDurationMs;
 
     public GoogleFeedLoadRequest(Builder builder) {
-
         super(Method.GET, buildRequestUrl(builder), builder.mErrorListener);
 
         mListener = builder.mListener;
@@ -39,13 +38,11 @@ public class GoogleFeedLoadRequest extends Request<RssFeed> {
      */
     private static String buildRequestUrl(Builder builder) {
 
-        Uri.Builder uriBuilder = Uri.parse(Builder.API_URL).buildUpon();
+        final Uri.Builder uriBuilder = Uri.parse(Builder.API_URL).buildUpon();
         uriBuilder.appendQueryParameter(Builder.PARAM_QUERY, builder.mQuery);
         uriBuilder.appendQueryParameter(Builder.PARAM_VERSION, builder.mVersion);
         uriBuilder.appendQueryParameter(Builder.PARAM_HL, builder.mHl);
         uriBuilder.appendQueryParameter(Builder.PARAM_NUM, String.valueOf(builder.mNum));
-
-        Log.d("AAAAA", uriBuilder.build().toString());
 
         return uriBuilder.build().toString();
     }
@@ -57,17 +54,19 @@ public class GoogleFeedLoadRequest extends Request<RssFeed> {
             return Response.error(new VolleyError("Unexpected status code " + response.statusCode));
         }
 
+        Response<RssFeed> rssFeedResponse;
+
         try {
-            Log.d("BBBBBBB", new String(response.data, "UTF-8"));
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
+            final GoogleFeedLoadParser parser = new GoogleFeedLoadParser();
+            final RssFeed rssFeed = parser.parse(response.data);
+            final Cache.Entry cache = VolleyCache.createEntry(response, mCacheDurationMs, true);
+
+            rssFeedResponse = Response.success(rssFeed, cache);
+        } catch (ParseException e) {
+            rssFeedResponse = Response.error(new ParseError(e));
         }
 
-        final RssFeed feed = null;
-        Cache.Entry cacheEntry = VolleyCache.createEntry(response, mCacheDurationMs, true);
-        Response<RssFeed> parsed = Response.success(feed, cacheEntry);
-
-        return parsed;
+        return rssFeedResponse;
     }
 
     @Override
