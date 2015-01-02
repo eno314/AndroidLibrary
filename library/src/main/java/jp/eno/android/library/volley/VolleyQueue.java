@@ -21,13 +21,13 @@ public class VolleyQueue {
     /**
      * キューの取得
      *
-     * @param context
+     * @param context 呼び出し元のコンテキスト
      * @return Volleyのリクエストキュー
      */
     public static RequestQueue getQueue(Context context) {
 
         if (sRequestQueue == null) {
-            sRequestQueue = Volley.newRequestQueue(context.getApplicationContext());
+            sRequestQueue = Volley.newRequestQueue(context);
         }
 
         return sRequestQueue;
