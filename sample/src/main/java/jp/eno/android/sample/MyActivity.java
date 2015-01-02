@@ -18,7 +18,7 @@ public class MyActivity extends Activity {
 
         String rss = "http://blog.livedoor.jp/livejupiter2/index.rdf";
         GoogleFeedLoadRequest request = new GoogleFeedLoadRequest.Builder(rss).build();
-        VolleyQueue.getQueue(getApplicationContext()).add(request);
+        VolleyQueue.get(getApplicationContext()).add(request);
     }
 
 
